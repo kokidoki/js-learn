@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+	<script type="text/javascript">
+		function wordBox(word, walls, boxWidth) {
+			roofFloor = "";
+			wallSpace = "";
+			for(let num = 0; num < boxWidth + 2; num++) {
+				roofFloor += walls;
+			}
+			for(let num = 0; num < boxWidth - word.length; num++) {
+				wallSpace += " ";
+			}
+			console.log(roofFloor);
+			console.log(walls + wallSpace + word + walls);
+			console.log(roofFloor);
+		}
+		wordBox("1234567", "=", 10);
+		wordBox("dad", "*", 70);
+		wordBox("123456789101112745192846192837461928374", "%", 90);
+		wordBox("The quick brown fox jumped over the lazy dog.", "0", 50);
+		// console.log(`
+	 // 	_____
+		// |	 *
+		// |Hello*
+		// |_____*`)
+	</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+	<script type="text/javascript">
+		function wordBox(word, walls, boxWidth, allignmentType) {
+			roofFloor = "";
+			wallSpace = "";
+			allignments = [" num < boxWidth - word.length",  "num < boxWidth - word.length", " num < (boxWidth - word.length - 1) / 2"];
+			alsoAllignments = ["word + wallSpace", "wallSpace + word", "wallSpace + word + wallSpace + ' '"];
+			for(let num = 0; num < boxWidth + 2; num++) {
+				roofFloor += walls;
+			}
+			for(let num = 0; eval(allignments[allignmentType]); num++) {
+				wallSpace += " ";
+			}
+			console.log(roofFloor);
+			console.log(walls + eval(alsoAllignments[allignmentType]) + walls);
+			console.log(roofFloor);
+		}
+		//0 = alligned to left
+		//1 = alligned to right
+		//2 = alligned to center
+		wordBox("1234567", "=", 10, 0);
+		wordBox("dad", "*", 70, 1);
+		wordBox("123456789101112745192846192837461928374", "%", 90, 2);
+		wordBox("The quick brown fox jumped over the lazy dog.", "0", 50, 0);
+		wordBox("Jesus loves you", "@", 99, 2);
+		// console.log(`
+	 // 	_____
+		// |	 *
+		// |Hello*
+		// |_____*`)
+	</script>
+</body>
+</html>
