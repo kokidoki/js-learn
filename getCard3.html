@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<img src="cards/2C.png" width="200" height="300" id="card">
+	<script type="text/javascript">
+		let cardArray = [
+			"3C",
+			"4C",
+			"5C",
+			"6C",
+			"7C",
+			"8C",
+			"9C",
+			"10C",
+			"JC",
+			"QC",
+			"KC",
+			"AC"
+		];
+		let index = 0;
+		let cardNode = document.getElementById("card");
+		cardNode.addEventListener("click", function () {
+			if (index < cardArray.length) {
+				cardNode.src = "cards/" + cardArray[index] + ".png";
+				index++;
+			}
+		});
+	</script>
+</body>
+</html>

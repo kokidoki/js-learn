@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<img src="cards/2C.png" width="200" height="300" id="card">
+	<script type="text/javascript">
+		let cardNode = document.getElementById("card");
+		let card = 3;
+		let faceCards = ["J", "Q", "K", "A"];
+		let faceCardCounter = 0
+		cardNode.addEventListener("click", function () {
+			cardNode.src = "cards/" + card.toString() + "C.png";
+			if(card < 10) {
+				card += 1;
+			}
+			else if(faceCardCounter < 4) {
+				card = faceCards[faceCardCounter];
+				faceCardCounter += 1;
+			}
+		});
+	</script>
+</body>
+</html>
