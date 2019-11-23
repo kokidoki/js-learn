@@ -6,9 +6,20 @@
 <body>
 	<img src="cards/red_back.png" width="200" height="300" id="card">
 	<script type="text/javascript">
+		let cardArray = [];
+		let honorCards = ["J", "Q", "K", "A"];
+		let suits = ["D", "C", "H", "S"];
+		for(let s = 0; s < 4; s++) {
+			for(let i =2; i <=10; i++) {
+				cardArray.push(i + suits[s]);
+			}
+			for(let h = 0; h < 4; h++) {
+				cardArray.push(honorCards[h] + suits[s]);
+			}
+		}
 		let cardNode = document.getElementById("card");
 		cardNode.addEventListener("click", function () {
-			cardNode.src = "cards/2C.png"
+			cardNode.src = "cards/" + cardArray[Math.floor(Math.random() * cardArray.length)] + ".png"
 		});	
 	</script>
 </body>
