@@ -4,27 +4,40 @@
 	<title></title>
 </head>
 <body>
-	<img src="cards/2C.png" width="200" height="300" id="card">
+	<img src="cards/2D.png" width="200" height="300" id="cardD">
+	<img src="cards/2C.png" width="200" height="300" id="cardC">
+	<img src="cards/2H.png" width="200" height="300" id="cardH">
+	<img src="cards/2S.png" width="200" height="300" id="cardS">
 	<script type="text/javascript">
+		function changeCard(cardSuit, startingIndex) {
+			let index = startingIndex + 1;
+			let cardNode = document.getElementById("card" + cardSuit);
+			cardNode.addEventListener("click", function () {
+				if(index < startingIndex + 13) {
+					cardNode.src = "cards/" + cardArray[index] + ".png";
+					index++;
+
+					if (index == startingIndex + 13) {
+						index = startingIndex;
+					}
+				}
+			});
+		}
 		let cardArray = [];
-		for (let i =2; i <=10; i++) {
-			cardArray.push(i + "C");
-		}
 		let honorCards = ["J", "Q", "K", "A"];
-		for (let i = 0; i < honorCards.length; i++) {
-			cardArray.push(honorCards[i] + "C");
+		let suits = ["D", "C", "H", "S"];
+		for(let s = 0; s < 4; s++) {
+			for(let i =2; i <=10; i++) {
+				cardArray.push(i + suits[s]);
+			}
+			for(let h = 0; h < 4; h++) {
+				cardArray.push(honorCards[h] + suits[s]);
+			}
 		}
-		let index = 0;
-		let cardNode = document.getElementById("card");
-		cardNode.addEventListener("click", function () {
-			if (index < cardArray.length) {
-				cardNode.src = "cards/" + cardArray[index] + ".png";
-				index++;
-			}
-			else {
-				index = 0;
-			}
-		});
+		changeCard("D", 0);
+		changeCard("C", 13);
+		changeCard("H", 26);
+		changeCard("S", 39);
 	</script>
 </body>
 </html>
