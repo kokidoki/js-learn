@@ -22,7 +22,6 @@
 		let suits = ["D", "C", "H", "S"];
 		let cardNodeOriginal = document.getElementById("card");
 		let divNode = document.getElementById("cardRow1");
-		let flipped = true;
 		for(let s = 0; s < 4; s++) {
 			for(let i =2; i <=10; i++) {
 				cardArray.push(i + suits[s]);
@@ -31,7 +30,7 @@
 				cardArray.push(honorCards[h] + suits[s]);
 			}
 		}
-		console.log(shuffle(cardArray));
+		cardArray = shuffle(cardArray);
 		let cardIndexCounter = 0;
 		for(let c = 1; c <= 4; c++) {
 			divNode = document.getElementById("cardRow" + c);
@@ -40,20 +39,23 @@
 				cardNode.cardIndex = cardIndexCounter;
 				cardNode.addEventListener("click", function(event) {
 					currentCard = cardArray[cardNode.cardIndex]
-					if(flipped) {
+					console.log(cardNode.src);
+					if(cardNode.src == "file:///Users/kenny/js-learn/cards/red_back.png") {
 						cardNode.src = "cards/" + currentCard + ".png";
-						flipped = false;
 					}
 					else {
 						cardNode.src = "cards/red_back.png";
-						flipped = true;
 					}
 				});
 				divNode.appendChild(cardNode);
-				cardIndexCounter++;
+				if(cardIndexCounter < 7) {
+					cardIndexCounter++;
+				}
+				else {
+					cardIndexCounter = 0;
+				}
 			}
 		}
 		divNode.removeChild(cardNodeOriginal);
 	</script>
 </body>
-</html>
