@@ -1,0 +1,71 @@
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div id="cardRow1"></div>
+	<div id="cardRow2"></div>
+	<div id="cardRow3"></div>
+	<div id="cardRow4"><img src="cards/red_back.png" width="100" height="140" id="card"></div>
+	<script type="text/javascript">
+		// https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array
+		function shuffle(a) {
+		    for (let i = a.length - 1; i > 0; i--) {
+		        const j = Math.floor(Math.random() * (i + 1));
+		        [a[i], a[j]] = [a[j], a[i]];
+		    }
+		    return a;
+		}
+		let cardArray = [];
+		let honorCards = ["J", "Q", "K", "A"];
+		let suits = ["D", "C", "H", "S"];
+		let cardNodeOriginal = document.getElementById("card");
+		let divNode = document.getElementById("cardRow1");
+		let cardsFlipped = 0;
+		for(let s = 0; s < 4; s++) {
+			for(let i =2; i <=10; i++) {
+				cardArray.push(i + suits[s]);
+			}
+			for(let h = 0; h < 4; h++) {
+				cardArray.push(honorCards[h] + suits[s]);
+			}
+		}
+		cardArray = shuffle(cardArray);
+		let cardIndexCounter = 0;
+		let memoryCards = [];
+		let firstFLippedCard = "";
+		for(let m = 0; m < 8; m++) {
+			memoryCards.push(cardArray[m]);
+			memoryCards.push(cardArray[m]);
+		}
+		shuffle(memoryCards);
+		for(let c = 1; c <= 4; c++) {
+			divNode = document.getElementById("cardRow" + c);
+			for(let cc = 0; cc < 4; cc++) {
+				let cardNode = cardNodeOriginal.cloneNode(true);
+				cardNode.cardIndex = cardIndexCounter;
+				cardNode.addEventListener("click", function(event) {
+					currentCard = memoryCards[cardNode.cardIndex];
+					if(cardNode.src == "file:///Users/kenny/js-learn/cards/red_back.png") {
+						cardNode.src = "cards/" + currentCard + ".png";
+						if(cardsFlipped == 0) {
+							firstFLippedCard = currentCard;
+						} 
+						else if(firstFLippedCard == currentCard) {
+							//find way to change the node of firstFlippedCard
+						}
+					}
+					else {
+						cardNode.src = "cards/red_back.png";
+					}
+				});
+				divNode.appendChild(cardNode);
+				cardIndexCounter++;
+			}
+		}
+		divNode.removeChild(cardNodeOriginal);
+	</script>
+</body>
+</html>
